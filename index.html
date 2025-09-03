@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>viprox — Viandra Proxy</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff6ec7, #6a5acd, #00c6ff);
+      background-size: 300% 300%;
+      animation: gradientBG 12s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+      text-align: center;
+      flex-direction: column;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    h1 {
+      font-size: 52px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    }
+    h1 span {
+      color: #FFD700;
+    }
+    .search-box {
+      background: rgba(255,255,255,0.2);
+      padding: 15px 20px;
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 90%;
+      max-width: 600px;
+      margin: 20px auto;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+    .search-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 18px;
+      padding: 10px;
+      border-radius: 20px;
+    }
+    .search-box select {
+      border-radius: 20px;
+      padding: 8px;
+      font-size: 14px;
+    }
+    button {
+      background: linear-gradient(135deg, #ff6ec7, #6a5acd);
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #fff;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <h1>✨ viprox <span>(Viandra Proxy)</span></h1>
+  <p>Cari cepat dengan penuh warna 🌈</p>
+
+  <form id="searchForm" class="search-box">
+    <input id="query" type="text" placeholder="Ketik kata kunci..." required>
+    <select id="engine">
+      <option value="google">Google</option>
+      <option value="yandex">Yandex</option>
+      <option value="duckduckgo">DuckDuckGo</option>
+    </select>
+    <button type="submit">🔍 Cari</button>
+  </form>
+
+  <footer>
+    © 2025 viprox — Dibuat penuh warna 🎨
+  </footer>
+
+  <script>
+    const form = document.getElementById('searchForm');
+    const queryEl = document.getElementById('query');
+    const engineEl = document.getElementById('engine');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = queryEl.value.trim();
+      const engine = engineEl.value;
+
+      let url = "";
+      if (engine === "google") {
+        url = `https://www.google.com/search?q=${encodeURIComponent(q)}`;
+      } else if (engine === "yandex") {
+        url = `https://yandex.com/search/?text=${encodeURIComponent(q)}`;
+      } else {
+        url = `https://duckduckgo.com/?q=${encodeURIComponent(q)}`;
+      }
+
+      // Redirect langsung ke mesin pencari
+      window.location.href = url;
+    });
+  </script>
+</body>
+</html>
